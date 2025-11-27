@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio DevOps — Marega Djibril</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+  </script>
+</head>
+
+<body class="bg-gray-900 text-gray-200 font-sans">
+
+  <!-- HEADER -->
+  <header class="border-b border-gray-700 bg-gray-800/50 backdrop-blur">
+    <div class="max-w-6xl mx-auto flex justify-between items-center py-5 px-4">
+      <h1 class="text-2xl font-bold">Marega Djibril — Administrateur Système DevOps</h1>
+      <nav class="space-x-6">
+        <a href="#projects" class="hover:text-blue-400">Projets</a>
+        <a href="#skills" class="hover:text-blue-400">Compétences</a>
+        <a href="#contact" class="hover:text-blue-400">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-4 py-20">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-4xl font-bold mb-4">Administrateur Système DevOps</h2>
+        <div class="max-h-48 overflow-y-auto pr-2 custom-scroll text-gray-400 leading-relaxed mb-6">
+            Administrateur Système & DevOps, formé à la création d’infrastructures automatisées et à la gestion d’environnements cloud.
+            Ma passion : transformer des systèmes complexes en pipelines simples, fiables et entièrement reproductibles.
+
+            Au cours de ma formation et de mes projets personnels, j’ai conçu :
+            – une architecture microservices complète (Django + React) déployée sur AWS via Terraform, Ansible, Docker et Vault ;
+            – un pipeline de Machine Learning en production, basé sur un système d’apprentissage ensembliste avec calibration, génération de données et orchestration des prédictions ;
+            – un scraper haute performance (Playwright) capable d’ingérer des milliers de matchs avec logs, parallélisation et robustesse.
+
+            J’aime travailler avec Docker, Terraform, Ansible, AWS, Linux, PostgreSQL, Redis…
+            Mon approche est centrée sur la qualité, la sécurité, l’automatisation et la documentation, essentielles pour tout environnement DevOps moderne.
+        </div>
+
+        <a href="#projects" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold">
+          Voir mes projets
+        </a>
+      </div>
+      <div class="text-center">
+        <div class="rounded-xl border border-gray-700 p-4 bg-gray-800">
+          <p class="text-gray-400">Avatar ou image ici</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-20 bg-gray-800 border-y border-gray-700">
+    <div class="max-w-6xl mx-auto px-4">
+      <h3 class="text-3xl font-bold mb-10">Compétences</h3>
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+          <h4 class="text-xl font-semibold mb-4">DevOps & Cloud</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li>Docker, Docker Compose</li>
+            <li>Terraform (AWS)</li>
+            <li>Ansible (provisioning + déploiement)</li>
+            <li>AWS (EC2, RDS, S3, VPC…) </li>
+            <li>CI/CD</li>
+          </ul>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+          <h4 class="text-xl font-semibold mb-4">Backend / Data</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li>Python (avancé)</li>
+            <li>Playwright (scraping)</li>
+            <li>PostgreSQL</li>
+            <li>Django (REST API)</li>
+            <li>Machine Learning (pipelines + Meta Model)</li>
+            <li>Pytorch (deep learning)</li>
+            <li>Optuna (optimisation)</li>
+          </ul>
+        </div>
+        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+          <h4 class="text-xl font-semibold mb-4">Outils & Architecture</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li>Vault (secrets)</li>
+            <li>Logging structuré</li>
+            <li>Architectures microservices</li>
+            <li>Organisation de projets complexes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="max-w-6xl mx-auto px-4 py-20">
+    <h3 class="text-3xl font-bold mb-10">Projets DevOps</h3>
+    <div class="space-y-14">
+
+      <!-- PROJET 1 -->
+      <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+        <h4 class="text-2xl font-bold mb-2">Mythotomia — Architecture Microservices</h4>
+        <p class="text-gray-400 mb-4">
+          Plateforme conteneurisée (Django + React + Nginx) déployée sur AWS avec
+          Terraform + Ansible. Séparation complète des services, RDS PostgreSQL, Vault pour les secrets,
+          JWT RS256, CI/CD local.
+        </p>
+        <ul class="list-disc ml-6 text-gray-400 mb-6">
+          <li>Terraform (VPC, subnets, SG, EC2, RDS)</li>
+          <li>Ansible pour le provisioning et le déploiement</li>
+          <li>Architecture microservices complète</li>
+          <li>Docker Compose pour orchestration locale</li>
+        </ul>
+        <div class="flex gap-4">
+          <a href="https://github.com/djibril-marega/mythotomia" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Voir le repository
+          </a>
+          <button onclick="openModal('modal-mythotomia')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
+            Voir l'étude de cas
+          </button>
+        </div>
+      </div>
+
+      <!-- PROJET 2 -->
+      <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+        <h4 class="text-2xl font-bold mb-2">OddsPortal Scraper — Pipeline de collecte</h4>
+        <p class="text-gray-400 mb-4">
+          Scraper Playwright automatisé pour collecter des données sportives.
+          Exécutions parallèles, structure reproductible, logs propre, configuration JSON,
+          pipeline complet pour alimenter un système ML.
+        </p>
+        <ul class="list-disc ml-6 text-gray-400 mb-6">
+          <li>Playwright + anti-bot</li>
+          <li>Scraping parallèle (multiprocessing)</li>
+          <li>Gestion automatique des logs et fichiers</li>
+          <li>Architecture pipeline propre</li>
+        </ul>
+        <div class="flex gap-4">
+          <a href="https://github.com/djibril-marega/oddsportal_scraper" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Voir le repository
+          </a>
+          <button onclick="openModal('modal-scraper')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
+            Voir l'étude de cas
+          </button>
+        </div>
+      </div>
+
+      <!-- PROJET 3 -->
+        <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+            <h4 class="text-2xl font-bold mb-2">Analyse Paris Sportifs — Pipeline ML & Stratégie Value Bets</h4>
+            <p class="text-gray-400 mb-4">
+                Étude complète pour identifier des paris sportifs à valeur positive (value bets). 
+                Comprend réflexion sur les probabilités, roadmap technique, suivi de modèle, validation et application stratégique.
+            </p>
+            <p class="text-gray-500 italic mb-4">
+                → Code privé — PDF technique disponible
+            </p>
+            <button onclick="openModal('modal-ml')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
+                Voir l'étude de cas
+            </button>
+        </div>
+    </div>
+  </section>
+
+  <!-- MODALS -->
+  <!-- Mythotomia -->
+  <div id="modal-mythotomia" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+      <button onclick="closeModal('modal-mythotomia')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <h4 class="text-2xl font-bold mb-4">Mythotomia — Étude de cas</h4>
+      <iframe src="pdfs/etude_de_cas_mythotomia.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+      <a href="pdfs/etude_de_cas_mythotomia.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Télécharger le PDF complet
+      </a>
+    </div>
+  </div>
+
+  <!-- Scraper -->
+  <div id="modal-scraper" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+      <button onclick="closeModal('modal-scraper')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+      <h4 class="text-2xl font-bold mb-4">OddsPortal Scraper — Étude de cas</h4>
+      <iframe src="pdfs/etude_de_cas_odds_scrapper.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+      <a href="pdfs/etude_de_cas_odds_scrapper.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Télécharger le PDF complet
+      </a>
+    </div>
+  </div>
+    
+
+    <!-- Modal ML -->
+    <div id="modal-ml" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+        <button onclick="closeModal('modal-ml')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+        <h4 class="text-2xl font-bold mb-4">Analyse Paris Sportifs — Étude de cas complète</h4>
+        <iframe src="pdfs/Etude_de_cas_Analyse_Paris_Sportifs.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+        <a href="pdfs/Etude_de_cas_Analyse_Paris_Sportifs.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+        Télécharger le PDF complet
+        </a>
+    </div>
+    </div>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-gray-800 border-t border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h3 class="text-3xl font-bold mb-6">Contact</h3>
+      <p class="text-gray-400 mb-6">Tu peux me contacter ici :</p>
+      <p class="text-xl">
+        <a href="mailto:djibril-marega@gmx.com" class="text-blue-400 hover:underline">
+          djibril-marega@gmx.com
+        </a>
+      </p>
+      <p class="mt-4">
+        <a href="https://github.com/djibril-marega" class="text-blue-400 hover:underline">
+          Mon GitHub
+        </a>
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
+
+<style> 
+/* Scrollbar discrète et moderne */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #1f2937; /* gris foncé */
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #4b5563; /* gris moyen */
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* gris plus clair */
+}
+</style>
