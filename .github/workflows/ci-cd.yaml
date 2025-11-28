@@ -87,6 +87,13 @@ jobs:
           pip install ansible boto3 botocore
           ansible-galaxy collection install community.general
 
+      - name: Add EC2 to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $EC2_HOSTNAME >> ~/.ssh/known_hosts
+        env:
+          EC2_HOSTNAME: ${{ env.EC2_HOSTNAME }}
+          
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yaml -i "${EC2_HOSTNAME}," --user ubuntu --private-key ec2_key.pem
         env:
