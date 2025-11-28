@@ -87,7 +87,7 @@ jobs:
       # Playbook qui installe Docker, récupère l'image GHCR et lance le container
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook ansible/playbook.yml \
+          ansible-playbook ansible/playbook.yaml \
             -i "${EC2_HOSTNAME}," \
             --user ubuntu \
             --private-key "${SSH_PRIVATE_KEY}"
