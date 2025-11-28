@@ -2,6 +2,7 @@
   hosts: ec2
   become: yes
   tasks:
+
     - name: Update apt cache
       apt:
         update_cache: yes
@@ -45,16 +46,11 @@
       args:
         creates: /usr/local/bin/docker-compose
 
-    - name: Copy Docker image tar to EC2
-      copy:
-        src: ../portfolio.tar
-        dest: /home/ubuntu/portfolio.tar
-        owner: ubuntu
-        group: ubuntu
-        mode: '0644'
-
-    - name: Load Docker image on EC2
-      shell: docker load -i /home/ubuntu/portfolio.tar
+    - name: Pull Docker image from GHCR
+      shell: docker login ghcr.io -u djibril-marega -p $GHCR_PAT && \
+             docker pull ghcr.io/djibril-marega/portfolio:latest
+      args:
+        executable: /bin/bash
 
     - name: Copy docker-compose.yml to EC2
       copy:
@@ -66,3 +62,8 @@
 
     - name: Run Docker Compose
       shell: docker-compose -f /home/ubuntu/docker-compose.yml up -d
+
+    - name: Check if container is running
+      shell: docker ps --filter "name=portfolio" --filter "status=running" -q
+      register: container_status
+      failed_when: container_status.stdout == ""
