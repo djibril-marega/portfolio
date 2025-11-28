@@ -55,13 +55,13 @@
     - name: Copy docker-compose.yml to EC2
       copy:
         src: docker-compose.yml
-        dest: /home/ubuntu/docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yaml
         owner: ubuntu
         group: ubuntu
         mode: '0644'
 
     - name: Run Docker Compose
-      shell: docker-compose -f /home/ubuntu/docker-compose.yml up -d
+      shell: docker-compose -f /home/ubuntu/docker-compose.yaml up -d
 
     - name: Check if container is running
       shell: docker ps --filter "name=portfolio" --filter "status=running" -q
