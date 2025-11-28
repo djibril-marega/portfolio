@@ -52,9 +52,9 @@
     - name: Pull Docker image from GHCR
       shell: docker pull ghcr.io/djibril-marega/portfolio:latest
 
-    - name: Copy docker-compose.yml to EC2
+    - name: Copy docker-compose.yaml to EC2
       copy:
-        src: docker-compose.yml
+        src: docker-compose.yaml
         dest: /home/ubuntu/docker-compose.yaml
         owner: ubuntu
         group: ubuntu
