@@ -54,7 +54,7 @@
 
     - name: Copy docker-compose.yaml to EC2
       copy:
-        src: docker-compose.yaml
+        src: ../docker-compose.yaml
         dest: /home/ubuntu/docker-compose.yaml
         owner: ubuntu
         group: ubuntu
