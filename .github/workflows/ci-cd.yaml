@@ -88,7 +88,7 @@ jobs:
           ansible-galaxy collection install community.general
 
       - name: Run Ansible Playbook
-        run: ansible-playbook ansible/playbook.yml -i "${EC2_HOSTNAME}," --user ubuntu --private-key ec2_key.pem
+        run: ansible-playbook ansible/playbook.yaml -i "${EC2_HOSTNAME}," --user ubuntu --private-key ec2_key.pem
         env:
           GHCR_PAT: ${{ secrets.GHCR_PAT }}
           EC2_HOSTNAME: ${{ env.EC2_HOSTNAME }}
