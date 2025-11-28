@@ -33,7 +33,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/djibril-marega/portfolio:latest
+          tags: ghcr.io/djibril-marega/portfolio:latest 
 
       # Terraform
       - name: Setup Terraform
