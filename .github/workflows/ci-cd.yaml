@@ -64,7 +64,18 @@ jobs:
             echo "Terraform output is empty or failed"
             exit 1
           fi
+          # Ajouter dans le job env pour les steps suivants
           echo "EC2_HOSTNAME=$HOSTNAME" >> $GITHUB_ENV
+          # Définir comme output du step
+          echo "EC2_HOSTNAME=$HOSTNAME" >> $GITHUB_OUTPUT
+
+
+      - name: Create/update repo secret
+        env:
+          GH_TOKEN: ${{ secrets.GHCR_PAT }}
+          EC2_HOSTNAME: ${{ steps.tf_output.outputs.EC2_HOSTNAME }}
+        run: |
+          gh secret set EC2_HOSTNAME --body "$EC2_HOSTNAME" --repo $GITHUB_REPOSITORY
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -75,11 +86,6 @@ jobs:
         run: |
           pip install ansible boto3 botocore
           ansible-galaxy collection install community.general
-
-      - name: Create SSH key file
-        run: |
-          echo "${{ secrets.EC2_SSH_KEY }}" > ec2_key.pem
-          chmod 600 ec2_key.pem
 
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yaml \
