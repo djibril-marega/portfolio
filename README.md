@@ -30,7 +30,7 @@ Le site a été conçu pour être **simple, rapide et facilement déployable**, 
 - Terraform (AWS)  
 - Ansible (provisioning + déploiement)  
 - CI/CD via GitHub Actions  
-- Nexus Repository (registry Docker privé)
+- Github Registery (registry Docker privé)
 
 ---
 

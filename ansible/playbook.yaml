@@ -1,0 +1,68 @@
+- name: Install Docker & Deploy Compose on EC2
+  hosts: ec2
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install required packages
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: yes
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Install Docker Compose
+      shell: |
+        curl -L "https://github.com/docker/compose/releases/download/v2.21.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+      args:
+        creates: /usr/local/bin/docker-compose
+
+    - name: Copy Docker image tar to EC2
+      copy:
+        src: ../portfolio.tar
+        dest: /home/ubuntu/portfolio.tar
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Load Docker image on EC2
+      shell: docker load -i /home/ubuntu/portfolio.tar
+
+    - name: Copy docker-compose.yml to EC2
+      copy:
+        src: docker-compose.yml
+        dest: /home/ubuntu/docker-compose.yml
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+
+    - name: Run Docker Compose
+      shell: docker-compose -f /home/ubuntu/docker-compose.yml up -d
