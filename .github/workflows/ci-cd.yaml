@@ -56,7 +56,14 @@ jobs:
 
       - name: Get Terraform output
         id: tf_output
-        run: echo "EC2_HOSTNAME=$(terraform -chdir=terraform output -raw instance_app_hostname)" >> $GITHUB_ENV
+        run: |
+          HOSTNAME=$(terraform -chdir=terraform output -raw instance_app_hostname)
+          if [ -z "$HOSTNAME" ]; then
+            echo "Terraform output is empty or failed"
+            exit 1
+          fi
+          echo "EC2_HOSTNAME=$HOSTNAME" >> $GITHUB_ENV
+
 
       - name: Setup Python
         uses: actions/setup-python@v4
