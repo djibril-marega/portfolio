@@ -84,4 +84,4 @@ jobs:
             --private-key ec2_key.pem
 
       - name: Show EC2 Hostname
-        run: echo "EC2 instance hostname: $EC2_HOSTNAME"
+        run: echo "EC2 instance hostname $EC2_HOSTNAME"
