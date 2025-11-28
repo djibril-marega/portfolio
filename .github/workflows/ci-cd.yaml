@@ -56,6 +56,8 @@ jobs:
 
       - name: Get Terraform output
         id: tf_output
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
         run: |
           HOSTNAME=$(terraform -chdir=terraform output -raw instance_app_hostname)
           if [ -z "$HOSTNAME" ]; then
@@ -63,6 +65,7 @@ jobs:
             exit 1
           fi
           echo "EC2_HOSTNAME=$HOSTNAME" >> $GITHUB_ENV
+
 
 
       - name: Setup Python
