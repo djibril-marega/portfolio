@@ -46,11 +46,11 @@
       args:
         creates: /usr/local/bin/docker-compose
 
+    - name: Login to GHCR
+      shell: echo "{{ ghcr_pat }}" | docker login ghcr.io -u djibril-marega --password-stdin
+
     - name: Pull Docker image from GHCR
-      shell: docker login ghcr.io -u djibril-marega -p $GHCR_PAT && \
-             docker pull ghcr.io/djibril-marega/portfolio:latest
-      args:
-        executable: /bin/bash
+      shell: docker pull ghcr.io/djibril-marega/portfolio:latest
 
     - name: Copy docker-compose.yml to EC2
       copy:
