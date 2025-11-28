@@ -40,20 +40,19 @@ jobs:
 
       - name: Terraform Init
         run: terraform -chdir=terraform init
+        env:
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Plan
         run: terraform -chdir=terraform plan
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Apply
         run: terraform -chdir=terraform apply -auto-approve
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+          TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+
 
       - name: Get Terraform output
         id: tf_output
@@ -81,7 +80,7 @@ jobs:
           ansible-playbook ansible/playbook.yml \
             -i "${EC2_HOSTNAME}," \
             --user ubuntu \
-            --private-key ec2_key.pem
+            --private-key "${SSH_PRIVATE_KEY}"
 
       - name: Show EC2 Hostname
         run: echo "EC2 instance hostname $EC2_HOSTNAME"
