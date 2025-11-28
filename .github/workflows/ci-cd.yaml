@@ -76,6 +76,11 @@ jobs:
           EC2_HOSTNAME: ${{ steps.tf_output.outputs.EC2_HOSTNAME }}
         run: |
           gh secret set EC2_HOSTNAME --body "$EC2_HOSTNAME" --repo $GITHUB_REPOSITORY
+      
+      - name: Create SSH key file
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > ec2_key.pem
+          chmod 600 ec2_key.pem
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -93,7 +98,7 @@ jobs:
           ssh-keyscan -H $EC2_HOSTNAME >> ~/.ssh/known_hosts
         env:
           EC2_HOSTNAME: ${{ env.EC2_HOSTNAME }}
-          
+
       - name: Run Ansible Playbook
         run: ansible-playbook ansible/playbook.yaml -i "${EC2_HOSTNAME}," --user ubuntu --private-key ec2_key.pem
         env:
