@@ -1,256 +1,295 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio DevOps — Marega Djibril</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    function openModal(modalId) {
-      document.getElementById(modalId).classList.remove('hidden');
-    }
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.add('hidden');
-    }
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio DevOps — Marega Djibril</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+const translations = {
+  fr: {
+    headerTitle: "Marega Djibril — Administrateur Système DevOps",
+    heroTitle: "Administrateur Système DevOps",
+    heroText: `Administrateur Système & DevOps, formé à la création d’infrastructures automatisées et à la gestion d’environnements cloud.
+Ma passion : transformer des systèmes complexes en pipelines simples, fiables et entièrement reproductibles.
+
+Au cours de ma formation et de mes projets personnels, j’ai conçu :
+– une architecture microservices complète (Django + React) déployée sur AWS via Terraform, Ansible, Docker et Vault ;
+– un pipeline de Machine Learning en production, basé sur un système d’apprentissage ensembliste avec calibration, génération de données et orchestration des prédictions ;
+– un scraper haute performance (Playwright) capable d’ingérer des milliers de matchs avec logs, parallélisation et robustesse.
+
+J’aime travailler avec Docker, Terraform, Ansible, AWS, Linux, PostgreSQL, Redis…
+Mon approche est centrée sur la qualité, la sécurité, l’automatisation et la documentation.`,
+    heroBtn: "Voir mes projets",
+    navProjects: "Projets",
+    navSkills: "Compétences",
+    navContact: "Contact",
+    skillsTitle: "Compétences",
+    skillsColumns: {
+      devops: {title: "DevOps & Cloud", items:["Docker, Docker Compose","Terraform (AWS)","Ansible (provisioning + déploiement)","AWS (EC2, RDS, S3, VPC…)","GitHub Actions (CI/CD)","GitHub Packages (Artifacts Registery)","Prometheus & Grafana (monitoring & métriques ML)"]},
+      backend: {title: "Backend / Data", items:["Python (avancé)","Playwright (scraping)","PostgreSQL","Django (REST API)","Machine Learning (pipelines + Meta Model)","PyTorch (deep learning)","Optuna/Ray (optimisation hyper-paramétrique)"]},
+      tools: {title: "Outils & Architecture", items:["Vault (secrets)","Logging structuré","Architectures microservices","Organisation de projets complexes"]}
+    },
+    projectsTitle: "Projets DevOps",
+    project1: {title:"Mythotomia — Architecture Microservices", desc:`Plateforme conteneurisée (Django + React + Nginx) déployée sur AWS avec Terraform + Ansible.
+Séparation complète des services, RDS PostgreSQL, Vault pour les secrets, JWT RS256, CI/CD local.`, pdf:"pdfs/etude_de_cas_mythotomia.pdf", btn:"Voir l'étude de cas"},
+    project2: {title:"OddsPortal Scraper — Pipeline de collecte", desc:`Scraper Playwright automatisé pour collecter des données sportives.
+Exécutions parallèles, structure reproductible, logs propre, configuration JSON.
+Pipeline complet pour alimenter un système ML.`, pdf:"pdfs/etude_de_cas_odds_scrapper.pdf", btn:"Voir l'étude de cas"},
+    project3: {title:"Analyse Paris Sportifs — Pipeline Machine Learning & Stratégie Value Bets", desc:`Étude complète pour identifier des paris sportifs à valeur positive (value bets). 
+Comprend réflexion sur les probabilités, roadmap technique, et optimisation des modèles avec Ray utilisant le Population Based Training. 
+Le suivi est assuré via Prometheus et Grafana pour prévenir les dépassements de RAM. Déployé avec Docker Compose.`, pdf:"pdfs/Etude_de_cas_Analyse_Paris_Sportifs.pdf", btn:"Voir l'étude de cas"},
+    contactTitle:"Contact", contactText:"Tu peux me contacter ici :", email:"djibril-marega@gmx.com", github:"Mon GitHub"
+  },
+  en: {
+    headerTitle: "Marega Djibril — DevOps & System Administrator",
+    heroTitle: "DevOps & System Administrator",
+    heroText: `DevOps & System Administrator trained in creating automated infrastructures and managing cloud environments.
+Passionate about turning complex systems into simple, reliable, fully reproducible pipelines.
+
+During my training and personal projects, I designed:
+– a complete microservices architecture (Django + React) deployed on AWS via Terraform, Ansible, Docker and Vault;
+– a production Machine Learning pipeline based on ensemble learning with calibration, data generation and prediction orchestration;
+– a high-performance scraper (Playwright) capable of ingesting thousands of matches with logs, parallelization, and robustness.
+
+I enjoy working with Docker, Terraform, Ansible, AWS, Linux, PostgreSQL, Redis…
+My approach focuses on quality, security, automation and documentation.`,
+    heroBtn: "View my projects",
+    navProjects: "Projects",
+    navSkills: "Skills",
+    navContact: "Contact",
+    skillsTitle: "Skills",
+    skillsColumns: {
+      devops: {title:"DevOps & Cloud", items:["Docker, Docker Compose","Terraform (AWS)","Ansible (provisioning + deployment)","AWS (EC2, RDS, S3, VPC…)","GitHub Actions (CI/CD)","GitHub Packages (Artifacts Registery)","Prometheus & Grafana (monitoring & ML metrics)"]},
+      backend: {title:"Backend / Data", items:["Python (advanced)","Playwright (scraping)","PostgreSQL","Django (REST API)","Machine Learning (pipelines + Meta Model)","PyTorch (deep learning)","Optuna/Ray (hyperparameter optimization)"]},
+      tools: {title:"Tools & Architecture", items:["Vault (secrets)","Structured logging","Microservices architectures","Complex project organization"]}
+    },
+    projectsTitle: "DevOps Projects",
+    project1: {title:"Mythotomia — Microservices Architecture", desc:`Containerized platform (Django + React + Nginx) deployed on AWS using Terraform + Ansible.
+Complete service separation, PostgreSQL RDS, Vault for secrets, JWT RS256, local CI/CD.`, pdf:"pdfs/case_study_mythotomia_en.pdf", btn:"View case study"},
+    project2: {title:"OddsPortal Scraper — Data Collection Pipeline", desc:`Automated Playwright scraper to collect sports data.
+Parallel execution, reproducible structure, structured logs, JSON configuration.
+Complete pipeline feeding a Machine Learning system.`, pdf:"pdfs/case_study_odds_scraper_en.pdf", btn:"View case study"},
+    project3: {title:"Sports Betting Analysis — ML Pipeline & Value Bet Strategy", desc:`Full study to identify positive value bets.
+Includes probability modeling, technical roadmap, model optimization with Ray using Population Based Training.
+Monitoring via Prometheus and Grafana. Deployed with Docker Compose.`, pdf:"pdfs/case_study_sports_betting_en.pdf", btn:"View case study"},
+    contactTitle:"Contact", contactText:"You can contact me here:", email:"djibril-marega@gmx.com", github:"My GitHub"
+  }
+};
+
+// ---- Gestion URL pour refléter la langue ----
+function getLangFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('lang') || 'fr';
+}
+
+function setLangInURL(lang) {
+  const url = new URL(window.location);
+  url.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', url);
+}
+
+// ---- Fonction principale pour appliquer la langue ----
+function setLanguage(lang){
+  document.body.setAttribute('data-lang', lang);
+  setLangInURL(lang);
+
+  const t = translations[lang];
+
+  // Header et navigation
+  document.getElementById('header-title').textContent = t.headerTitle;
+  document.querySelector('nav a[href="#projects"]').textContent = t.navProjects;
+  document.querySelector('nav a[href="#skills"]').textContent = t.navSkills;
+  document.querySelector('nav a[href="#contact"]').textContent = t.navContact;
+
+  // Hero
+  document.getElementById('hero-title').textContent = t.heroTitle;
+  document.getElementById('hero-text').textContent = t.heroText;
+  document.getElementById('hero-btn').textContent = t.heroBtn;
+
+  // Compétences
+  document.getElementById('skills-title').textContent = t.skillsTitle;
+  document.getElementById('skill-devops-title').textContent = t.skillsColumns.devops.title;
+  document.getElementById('skill-devops-items').innerHTML = t.skillsColumns.devops.items.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('skill-backend-title').textContent = t.skillsColumns.backend.title;
+  document.getElementById('skill-backend-items').innerHTML = t.skillsColumns.backend.items.map(i=>`<li>${i}</li>`).join('');
+  document.getElementById('skill-tools-title').textContent = t.skillsColumns.tools.title;
+  document.getElementById('skill-tools-items').innerHTML = t.skillsColumns.tools.items.map(i=>`<li>${i}</li>`).join('');
+
+  // Projets
+  document.getElementById('projects-title').textContent = t.projectsTitle;
+  for(let i=1;i<=3;i++){
+    const p = t[`project${i}`];
+    document.getElementById(`project${i}-title`).textContent = p.title;
+    document.getElementById(`project${i}-desc`).textContent = p.desc;
+    document.getElementById(`project${i}-btn`).textContent = p.btn;
+    document.getElementById(`modal${i}-iframe`).src = p.pdf;
+    document.getElementById(`modal${i}-link`).href = p.pdf;
+  }
+
+  // Contact
+  document.getElementById('contact-title').textContent = t.contactTitle;
+  document.getElementById('contact-text').textContent = t.contactText;
+  document.getElementById('contact-email').textContent = t.email;
+  document.getElementById('contact-email').href = "mailto:"+t.email;
+  document.getElementById('contact-github').textContent = t.github;
+  document.getElementById('lang-button').textContent = lang.toUpperCase();
+}
+
+// ---- Gestion des modals ----
+function openModal(id){document.getElementById(id).classList.remove('hidden');}
+function closeModal(id){document.getElementById(id).classList.add('hidden');}
+
+// ---- Initialisation au chargement ----
+const initialLang = getLangFromURL();
+setLanguage(initialLang);
+</script>
 </head>
+<body class="bg-gray-900 text-gray-200 font-sans" data-lang="fr">
 
-<body class="bg-gray-900 text-gray-200 font-sans">
+<!-- HEADER -->
+<header class="border-b border-gray-700 bg-gray-800/50 backdrop-blur">
+<div class="max-w-6xl mx-auto flex justify-between items-center py-5 px-4">
+<h1 id="header-title" class="text-2xl font-bold">Administrateur Système DevOps</h1>
+<nav class="flex items-center space-x-4">
+<a href="#projects" class="hover:text-blue-400">Projets</a>
+<a href="#skills" class="hover:text-blue-400">Compétences</a>
+<a href="#contact" class="hover:text-blue-400">Contact</a>
+<div class="relative inline-block text-left">
+<button id="lang-button" onclick="document.getElementById('lang-menu').classList.toggle('hidden')" class="bg-gray-700 px-3 py-1 rounded hover:bg-gray-600">FR</button>
+<div id="lang-menu" class="hidden absolute right-0 mt-2 w-20 bg-gray-800 border border-gray-700 rounded shadow-lg z-50">
+<button onclick="setLanguage('fr'); document.getElementById('lang-menu').classList.add('hidden');" class="block w-full text-left px-2 py-1 hover:bg-gray-700">FR</button>
+<button onclick="setLanguage('en'); document.getElementById('lang-menu').classList.add('hidden');" class="block w-full text-left px-2 py-1 hover:bg-gray-700">EN</button>
+</div>
+</div>
+</nav>
+</div>
+</header>
 
-  <!-- HEADER -->
-  <header class="border-b border-gray-700 bg-gray-800/50 backdrop-blur">
-    <div class="max-w-6xl mx-auto flex justify-between items-center py-5 px-4">
-      <h1 class="text-2xl font-bold">Marega Djibril — Administrateur Système DevOps</h1>
-      <nav class="space-x-6">
-        <a href="#projects" class="hover:text-blue-400">Projets</a>
-        <a href="#skills" class="hover:text-blue-400">Compétences</a>
-        <a href="#contact" class="hover:text-blue-400">Contact</a>
-      </nav>
-    </div>
-  </header>
+<!-- HERO -->
+<section class="max-w-6xl mx-auto px-4 py-20">
+<div class="grid md:grid-cols-2 gap-10 items-center">
+<div>
+<h2 id="hero-title" class="text-4xl font-bold mb-4"></h2>
+<div id="hero-text" class="max-h-48 overflow-y-auto pr-2 custom-scroll text-gray-400 leading-relaxed mb-6"></div>
+<a id="hero-btn" href="#projects" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold"></a>
+</div>
+<div class="flex justify-center mt-8">
+<div class="w-28 h-28 rounded-full overflow-hidden border-4 border-indigo-500 bg-gray-700 flex items-center justify-center transform transition-transform duration-300 hover:scale-110 cursor-pointer">
+<img src="images/20181212_183542.jpg" alt="Avatar" class="w-full h-full object-cover">
+</div>
+</div>
+</div>
+</section>
 
-  <!-- HERO -->
-  <section class="max-w-6xl mx-auto px-4 py-20">
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-4xl font-bold mb-4">Administrateur Système DevOps</h2>
-        <div class="max-h-48 overflow-y-auto pr-2 custom-scroll text-gray-400 leading-relaxed mb-6">
-            Administrateur Système & DevOps, formé à la création d’infrastructures automatisées et à la gestion d’environnements cloud.
-            Ma passion : transformer des systèmes complexes en pipelines simples, fiables et entièrement reproductibles.
+<!-- SKILLS -->
+<section id="skills" class="py-20 bg-gray-800 border-y border-gray-700">
+<div class="max-w-6xl mx-auto px-4">
+<h3 id="skills-title" class="text-3xl font-bold mb-10"></h3>
+<div class="grid md:grid-cols-3 gap-10">
+<div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+<h4 id="skill-devops-title" class="text-xl font-semibold mb-4"></h4>
+<ul id="skill-devops-items" class="space-y-2 text-gray-400"></ul>
+</div>
+<div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+<h4 id="skill-backend-title" class="text-xl font-semibold mb-4"></h4>
+<ul id="skill-backend-items" class="space-y-2 text-gray-400"></ul>
+</div>
+<div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
+<h4 id="skill-tools-title" class="text-xl font-semibold mb-4"></h4>
+<ul id="skill-tools-items" class="space-y-2 text-gray-400"></ul>
+</div>
+</div>
+</div>
+</section>
 
-            Au cours de ma formation et de mes projets personnels, j’ai conçu :
-            – une architecture microservices complète (Django + React) déployée sur AWS via Terraform, Ansible, Docker et Vault ;
-            – un pipeline de Machine Learning en production, basé sur un système d’apprentissage ensembliste avec calibration, génération de données et orchestration des prédictions ;
-            – un scraper haute performance (Playwright) capable d’ingérer des milliers de matchs avec logs, parallélisation et robustesse.
+<!-- PROJETS -->
+<section id="projects" class="max-w-6xl mx-auto px-4 py-20">
+<h3 id="projects-title" class="text-3xl font-bold mb-10"></h3>
+<div class="space-y-14">
 
-            J’aime travailler avec Docker, Terraform, Ansible, AWS, Linux, PostgreSQL, Redis…
-            Mon approche est centrée sur la qualité, la sécurité, l’automatisation et la documentation, essentielles pour tout environnement DevOps moderne.
-        </div>
+<!-- Projet 1 -->
+<div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+<h4 id="project1-title" class="text-2xl font-bold mb-2"></h4>
+<p id="project1-desc" class="text-gray-400 mb-4"></p>
+<div class="flex gap-4">
+<a href="https://github.com/djibril-marega/mythotomia" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Voir le repository</a>
+<button id="project1-btn" onclick="openModal('modal1')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"></button>
+</div>
+</div>
 
-        <a href="#projects" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold">
-          Voir mes projets
-        </a>
-      </div>
-      <div class="flex justify-center mt-8">
-        <div class="w-28 h-28 rounded-full overflow-hidden border-4 border-indigo-500 bg-gray-700 flex items-center justify-center 
-                    transform transition-transform duration-300 hover:scale-110 cursor-pointer">
-          <img src="images/20181212_183542.jpg" alt="Avatar" class="w-full h-full object-cover">
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Projet 2 -->
+<div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+<h4 id="project2-title" class="text-2xl font-bold mb-2"></h4>
+<p id="project2-desc" class="text-gray-400 mb-4"></p>
+<div class="flex gap-4">
+<a href="https://github.com/djibril-marega/oddsportal_scraper" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Voir le repository</a>
+<button id="project2-btn" onclick="openModal('modal2')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"></button>
+</div>
+</div>
 
-  <!-- SKILLS -->
-  <section id="skills" class="py-20 bg-gray-800 border-y border-gray-700">
-    <div class="max-w-6xl mx-auto px-4">
-      <h3 class="text-3xl font-bold mb-10">Compétences</h3>
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
-          <h4 class="text-xl font-semibold mb-4">DevOps & Cloud</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li>Docker, Docker Compose</li>
-            <li>Terraform (AWS)</li>
-            <li>Ansible (provisioning + déploiement)</li>
-            <li>AWS (EC2, RDS, S3, VPC…) </li>
-            <li>Github Actions (CI/CD)</li>
-            <li>Github Packages (Artifacts Registery)</li>
-            <li>Prometheus & Grafana (monitoring & métriques ML)</li>
-          </ul>
-        </div>
-        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
-          <h4 class="text-xl font-semibold mb-4">Backend / Data</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li>Python (avancé)</li>
-            <li>Playwright (scraping)</li>
-            <li>PostgreSQL</li>
-            <li>Django (REST API)</li>
-            <li>Machine Learning (pipelines + Meta Model)</li>
-            <li>Pytorch (deep learning)</li>
-            <li>Optuna/Ray (optimisation hyper-paramétrique)</li>
-          </ul>
-        </div>
-        <div class="bg-gray-900 p-6 rounded-xl border border-gray-700">
-          <h4 class="text-xl font-semibold mb-4">Outils & Architecture</h4>
-          <ul class="space-y-2 text-gray-400">
-            <li>Vault (secrets)</li>
-            <li>Logging structuré</li>
-            <li>Architectures microservices</li>
-            <li>Organisation de projets complexes</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- Projet 3 -->
+<div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
+<h4 id="project3-title" class="text-2xl font-bold mb-2"></h4>
+<p id="project3-desc" class="text-gray-400 mb-4"></p>
+<button id="project3-btn" onclick="openModal('modal3')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500"></button>
+</div>
+</div>
+</section>
 
-  <!-- PROJECTS -->
-  <section id="projects" class="max-w-6xl mx-auto px-4 py-20">
-    <h3 class="text-3xl font-bold mb-10">Projets DevOps</h3>
-    <div class="space-y-14">
+<!-- Modals -->
+<div id="modal1" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+<div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+<button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+<h4 class="text-2xl font-bold mb-4"></h4>
+<iframe id="modal1-iframe" src="" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+<a id="modal1-link" href="" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"></a>
+</div>
+</div>
 
-      <!-- PROJET 1 -->
-      <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
-        <h4 class="text-2xl font-bold mb-2">Mythotomia — Architecture Microservices</h4>
-        <p class="text-gray-400 mb-4">
-          Plateforme conteneurisée (Django + React + Nginx) déployée sur AWS avec
-          Terraform + Ansible. Séparation complète des services, RDS PostgreSQL, Vault pour les secrets,
-          JWT RS256, CI/CD local.
-        </p>
-        <ul class="list-disc ml-6 text-gray-400 mb-6">
-          <li>Terraform (VPC, subnets, SG, EC2, RDS)</li>
-          <li>Ansible pour le provisioning et le déploiement</li>
-          <li>Architecture microservices complète</li>
-          <li>Docker Compose pour orchestration locale</li>
-        </ul>
-        <div class="flex gap-4">
-          <a href="https://github.com/djibril-marega/mythotomia" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Voir le repository
-          </a>
-          <button onclick="openModal('modal-mythotomia')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
-            Voir l'étude de cas
-          </button>
-        </div>
-      </div>
+<div id="modal2" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+<div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+<button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+<h4 class="text-2xl font-bold mb-4"></h4>
+<iframe id="modal2-iframe" src="" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+<a id="modal2-link" href="" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"></a>
+</div>
+</div>
 
-      <!-- PROJET 2 -->
-      <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
-        <h4 class="text-2xl font-bold mb-2">OddsPortal Scraper — Pipeline de collecte</h4>
-        <p class="text-gray-400 mb-4">
-          Scraper Playwright automatisé pour collecter des données sportives.
-          Exécutions parallèles, structure reproductible, logs propre, configuration JSON,
-          pipeline complet pour alimenter un système ML.
-        </p>
-        <ul class="list-disc ml-6 text-gray-400 mb-6">
-          <li>Playwright + anti-bot</li>
-          <li>Scraping parallèle (multiprocessing)</li>
-          <li>Gestion automatique des logs et fichiers</li>
-          <li>Architecture pipeline propre</li>
-        </ul>
-        <div class="flex gap-4">
-          <a href="https://github.com/djibril-marega/oddsportal_scraper" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            Voir le repository
-          </a>
-          <button onclick="openModal('modal-scraper')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
-            Voir l'étude de cas
-          </button>
-        </div>
-      </div>
+<div id="modal3" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
+<div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
+<button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+<h4 class="text-2xl font-bold mb-4"></h4>
+<iframe id="modal3-iframe" src="" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
+<a id="modal3-link" href="" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"></a>
+</div>
+</div>
 
-      <!-- PROJET 3 -->
-        <div class="bg-gray-800 border border-gray-700 rounded-xl p-8">
-            <h4 class="text-2xl font-bold mb-2">Analyse Paris Sportifs — Pipeline Machine Learning & Stratégie Value Bets</h4>
-            <p class="text-gray-400 mb-4">
-                Étude complète pour identifier des paris sportifs à valeur positive (value bets). 
-                Comprend réflexion sur les probabilités, roadmap technique, et optimisation des modèles avec Ray utilisant le **Population Based Training** (inspiration évolutionnaire pour faire évoluer les hyperparamètres). 
-                Le suivi est assuré via Prometheus et Grafana pour prévenir les dépassements de RAM grâce à des alertes. 
-                L'ensemble est déployé dans une architecture Docker Compose orchestrant trois conteneurs : l'application principale et les services de monitoring.
-            </p>
-            <p class="text-gray-500 italic mb-4">
-                → Code privé — PDF technique disponible
-            </p>
-            <button onclick="openModal('modal-ml')" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-500">
-                Voir l'étude de cas
-            </button>
-        </div>
-    </div>
-  </section>
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-gray-800 border-t border-gray-700">
+<div class="max-w-6xl mx-auto px-4 text-center">
+<h3 id="contact-title" class="text-3xl font-bold mb-6"></h3>
+<p id="contact-text" class="text-gray-400 mb-6"></p>
+<p class="text-xl">
+<a id="contact-email" href="mailto:djibril-marega@gmx.com" class="text-blue-400 hover:underline"></a>
+</p>
+<p class="mt-4">
+<a id="contact-github" href="https://github.com/djibril-marega" class="text-blue-400 hover:underline"></a>
+</p>
+</div>
+</section>
 
-  <!-- MODALS -->
-  <!-- Mythotomia -->
-  <div id="modal-mythotomia" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
-    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
-      <button onclick="closeModal('modal-mythotomia')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-      <h4 class="text-2xl font-bold mb-4">Mythotomia — Étude de cas</h4>
-      <iframe src="pdfs/etude_de_cas_mythotomia.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
-      <a href="pdfs/etude_de_cas_mythotomia.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Télécharger le PDF complet
-      </a>
-    </div>
-  </div>
+<style> 
+.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar-track { background: #1f2937; border-radius: 10px; }
+.custom-scroll::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; }
+.custom-scroll::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+</style>
 
-  <!-- Scraper -->
-  <div id="modal-scraper" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
-    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
-      <button onclick="closeModal('modal-scraper')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-      <h4 class="text-2xl font-bold mb-4">OddsPortal Scraper — Étude de cas</h4>
-      <iframe src="pdfs/etude_de_cas_odds_scrapper.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
-      <a href="pdfs/etude_de_cas_odds_scrapper.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Télécharger le PDF complet
-      </a>
-    </div>
-  </div>
-    
-
-    <!-- Modal ML -->
-    <div id="modal-ml" class="hidden fixed inset-0 bg-black/70 flex justify-center items-center z-50">
-    <div class="bg-gray-900 rounded-xl w-11/12 md:w-4/5 max-h-[90vh] overflow-y-auto p-6 relative">
-        <button onclick="closeModal('modal-ml')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-        <h4 class="text-2xl font-bold mb-4">Analyse Paris Sportifs — Étude de cas complète</h4>
-        <iframe src="pdfs/Etude_de_cas_Analyse_Paris_Sportifs.pdf" width="100%" height="600px" class="rounded border border-gray-700 mb-4"></iframe>
-        <a href="pdfs/Etude_de_cas_Analyse_Paris_Sportifs.pdf" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-        Télécharger le PDF complet
-        </a>
-    </div>
-    </div>
-
-
-  <!-- CONTACT -->
-  <section id="contact" class="py-20 bg-gray-800 border-t border-gray-700">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h3 class="text-3xl font-bold mb-6">Contact</h3>
-      <p class="text-gray-400 mb-6">Tu peux me contacter ici :</p>
-      <p class="text-xl">
-        <a href="mailto:djibril-marega@gmx.com" class="text-blue-400 hover:underline">
-          djibril-marega@gmx.com
-        </a>
-      </p>
-      <p class="mt-4">
-        <a href="https://github.com/djibril-marega" class="text-blue-400 hover:underline">
-          Mon GitHub
-        </a>
-      </p>
-    </div>
-  </section>
+<script>
+// Initialisation langue FR
+setLanguage('fr');
+</script>
 
 </body>
 </html>
-
-<style> 
-/* Scrollbar discrète et moderne */
-.custom-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.custom-scroll::-webkit-scrollbar-track {
-  background: #1f2937; /* gris foncé */
-  border-radius: 10px;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-  background: #4b5563; /* gris moyen */
-  border-radius: 10px;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #6b7280; /* gris plus clair */
-}
-</style>
